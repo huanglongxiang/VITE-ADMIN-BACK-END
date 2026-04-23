@@ -1,0 +1,7 @@
+import "./base/base.api"
+
+info (
+	desc:   "admin"
+	author:  "LIU SHUI YUAN"
+	email:   "848553347@qq.com"
+)

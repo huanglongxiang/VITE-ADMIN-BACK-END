@@ -1,0 +1,61 @@
+syntax = "v1"
+
+info (
+	title:   "公共响应"
+	desc:    "公共响应,减少重复定义"
+	author:  "LIU SHUI YUAN"
+	email:   "848553347@qq.com"
+	version: "1.0.0"
+)
+
+type BaseDataInfo {
+   // Error code | 错误代码
+	Code    int `json:"code"`
+	// Message | 提示信息
+	Message string `json:"message"`
+	// Data | 数据
+	Data    interface{} `json:"data ,omitempty"`
+}
+// 基础带数据信息
+type BaseListInfo {
+    // 数据总数
+    Total uint64 `json:"total"`
+
+    // Data | 数据
+    Data string `json:"data,omitempty"`
+}
+
+//  基础不带数据信息
+type BaseMsgResp {
+    // Error code | 错误代码
+    Code int    `json:"code"`
+
+    // Message | 提示信息
+    Message  string `json:"message"`
+}
+
+//  列表请求参数
+type PageInfo {
+    //  第几页
+    Page uint64 `json:"page" validate:"required,number,gt=0"`
+
+    // 单页数据行数
+    PageSize uint64 `json:"pageSize" validate:"required,number,lt=100000"`
+}
+
+@server(
+	group: base
+)
+service Core {
+	// 初始化数据库
+	@handler initDatabase
+	post /core/init/database returns (BaseMsgResp)
+
+	// 初始化定时任务数据库
+    // @handler initJobDatabase
+    // get /core/init/job_database returns (BaseMsgResp)
+
+    // 初始化消息中心数据库
+   // @handler initMcmsDatabase
+   // get /core/init/mcms_database returns (BaseMsgResp)
+}

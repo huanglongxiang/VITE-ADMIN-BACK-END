@@ -1,0 +1,13 @@
+Name: core-api
+Host: 0.0.0.0
+Port: 9100
+Timeout: 6000
+Auth:
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2
+  AccessExpire: 259200
+#验证码
+Captcha:
+  KeyLong: 5
+  ImgWidth: 240
+  ImgHeight: 80
+  Driver: digit

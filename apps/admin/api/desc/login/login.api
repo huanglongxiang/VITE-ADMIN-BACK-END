@@ -1,0 +1,35 @@
+info (
+	desc:   "login.api"
+	author:  "LIU SHUI YUAN"
+	email:   "848553347@qq.com"
+)
+import "../base/base.api"
+@server (
+	group:  Login
+	prefix: /api/user
+	tags:   "用户登录以及登出接口"
+)
+service userLogin {
+    // userLogin
+    @handler userLogin
+    post /api/create (ApiInfo) returns (BaseMsgResp)
+}
+
+
+
+
+type (
+   LoginRequest {
+	    AccountName     string `json:"accountName" validate="required"`
+	    Password string `json:"password" validate="required"`
+	    Code     string `json:"code"`
+  }
+  LoginResponse {
+    BaseDataInfo
+	AccessToken string `json:"accessToken"`
+  }
+  LoginOutRequest {}
+  LoginOutResponse {
+      BaseMsgResp
+   }
+)

@@ -1,0 +1,23 @@
+Name: systemclient.rpc
+ListenOn: 0.0.0.0:8080
+#Etcd:
+#  Hosts:
+#  - 127.0.0.1:2379
+#  Key: systemclient.rpc
+Mysql:
+  Host: "127.0.0.1"
+  Port: 3306
+  User: "root"
+  Password: "@1179099619aA"
+  Source: "mysql"
+  Db: "systemadmin"
+JWT:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
+  AccessExpire: 86400
+Redis:
+  Host: 127.0.0.1:6379
+  Type: "node"
+  Pass: "123456"
+  Tls: false
+  Key: "sys:"
+

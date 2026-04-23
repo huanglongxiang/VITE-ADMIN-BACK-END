@@ -1,0 +1,165 @@
+syntax = "proto3";
+package systemclient;
+option go_package = "./systemclient";
+
+// 添加用户信息
+message AddUserReq {
+  int64 id = 1; //用户id
+  string mobile = 2; //手机号码
+  string account_name = 3; //用户账号
+  string nick_name = 4; //用户昵称
+  string user_type = 5; //用户类型（00系统用户）
+  string avatar = 6; //头像路径
+  string email = 7; //用户邮箱
+  string password = 8; //密码
+  int32 status = 9; //状态(1:正常，0:禁用)
+  int64 dept_id = 10; //部门ID
+  string remark = 11; //备注
+  string create_name = 12; //创建者名称
+  string create_by = 13; //创建者账号
+  repeated int64 PostIds = 14; //岗位ids
+  repeated int64 RoleIds = 15; //角色ids
+}
+
+// 更新用户信息
+message UpdateUserReq {
+  int64 id = 1; //用户id
+  string mobile = 2; //手机号码
+  string account_name = 3; //用户账号
+  string nick_name = 4; //用户昵称
+  string user_type = 5; //用户类型（00系统用户）
+  string avatar = 6; //头像路径
+  string email = 7; //用户邮箱
+  string password = 8; //密码
+  int32 status = 9; //状态(1:正常，0:禁用)
+  int64 dept_id = 10; //部门ID
+  string remark = 11; //备注
+  string update_name = 12; //更新者名称
+  string update_by = 13; //更新者账号
+  repeated int64 PostIds = 14; //岗位ids
+  repeated int64 RoleIds = 15; //角色ids
+}
+// 更新用户信息状态
+message UpdateUserStatusReq {
+  repeated int64 ids = 1; //用户id
+  int32 status = 2; //状态(1:正常，0:禁用)
+  string update_name = 3; //更新者名称
+  string update_by = 4; //更新者账号
+}
+// 查询用户信息详情
+message QueryUserDetailReq {
+  int64 id = 1;
+}
+message QueryUserDetailResp {
+  int64 id = 1; //用户id
+  string mobile = 2; //手机号码
+  string account_name = 3; //用户账号
+  string nick_name = 4; //用户昵称
+  string user_type = 5; //用户类型（00系统用户）
+  string avatar = 6; //头像路径
+  string email = 7; //用户邮箱
+  int32 status = 9; //状态(1:正常，0:禁用)
+  int64 dept_id = 10; //部门ID
+  string login_ip = 11; //最后登录IP
+  string login_date_last = 12; //最后登录时间
+  string login_browser_type = 13; //浏览器类型
+  string login_user_os = 14; //操作系统
+  string pwd_update_date = 15; //密码最后更新时间
+  string remark = 16; //备注
+  int32 del_flag = 17; //删除标志（0代表删除 1代表存在）
+  string create_by = 18; //创建者
+  string create_time = 19; //创建时间
+  string update_by = 20; //更新者账号
+  string update_name = 21; //更新者名称
+  string update_time = 22; //更新时间
+  repeated int64 PostIds = 23; //岗位ids
+  repeated int64 RoleIds = 24; //角色ids
+}
+// 分页查询用户信息列表
+message QueryUserListReq {
+  string mobile = 1; //手机号码
+  string account_name = 2; //用户账号
+  string nick_name = 3; //用户昵称
+  string user_type = 4; //用户类型（00系统用户）
+  string avatar = 5; //头像路径
+  string email = 6; //用户邮箱
+  string password = 7; //密码
+  int32 status = 8; //状态(1:正常，0:禁用)
+  int64 dept_id = 9; //部门ID
+  string login_ip = 10; //最后登录IP
+  string login_date_last = 11; //最后登录时间
+  string login_browser_type = 12; //浏览器类型
+  string login_user_os = 13; //操作系统
+  string pwd_update_date = 14; //密码最后更新时间
+  int32 del_flag = 15; //删除标志（0代表删除 1代表存在）
+  int64 page_num = 16; //第几页
+  int64 page_size = 17; //每页的数量
+}
+message UserListData {
+  int64 id = 1; //用户id
+  string mobile = 2; //手机号码
+  string account_name = 3; //用户账号
+  string nick_name = 4; //用户昵称
+  string user_type = 5; //用户类型（00系统用户）
+  string avatar = 6; //头像路径
+  string email = 7; //用户邮箱
+  int32 status = 9; //状态(1:正常，0:禁用)
+  int64 dept_id = 10; //部门ID
+  string login_ip = 11; //最后登录IP
+  string login_date_last = 12; //最后登录时间
+  string login_browser_type = 13; //浏览器类型
+  string login_user_os = 14; //操作系统
+  string pwd_update_date = 15; //密码最后更新时间
+  string remark = 16; //备注
+  int32 del_flag = 17; //删除标志（0代表删除 1代表存在）
+  string create_by = 18; //创建者账号
+  string create_name = 19; //创建者名称
+  string create_time = 20; //创建时间
+  string update_by = 21; //更新者账号
+  string update_name = 22; //更新者名称
+  string update_time = 23; //更新时间
+  repeated int64 PostIds = 24; //岗位ids
+}
+message QueryUserListResp {
+  int64 total = 1;
+  repeated  UserListData list = 2;
+}
+
+message LoginReq {
+  string account = 1;//账号
+  string password = 2;//密码
+  string code = 3;//验证码
+  string ip_address = 4; //IP地址
+  string os = 5; //操作系统
+  string browser = 6; //浏览器
+}
+message loginResp {
+  int64 id = 1;
+  string userName = 2;
+  string AccessToken = 3;
+//  repeated string ApiUrls = 4;
+}
+message InfoReq {
+  int64 UserId = 1;
+}
+message  InfoResp {
+  string avatar = 1;
+  string name = 2;
+  repeated string BackgroundUrls = 3;
+}
+message ReSetPasswordReq {
+  int64 id = 1;
+  string update_by = 2;
+}
+message ReSetPasswordResp {
+  string pong = 1;
+}
+// 用户信息表
+service UserService {
+  // 用户登录
+  rpc Login(LoginReq) returns(loginResp);
+  // 获取用户个人信息
+  rpc UserInfo(InfoReq) returns(InfoResp);
+  // 重置用户密码
+  rpc ReSetPassword(ReSetPasswordReq) returns(ReSetPasswordResp);
+}
